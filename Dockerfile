@@ -12,4 +12,4 @@ ENV HOME_DIR /app
 
 WORKDIR $HOME_DIR
 
-CMD ["cat"]
+ENTRYPOINT ["plantuml"]
