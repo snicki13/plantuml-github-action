@@ -1,10 +1,10 @@
-name: 'PlantUML'
-description: 'Run PlantUML tool with the given set of arguments'
+name: 'PlantUML Generator'
+description: 'Run PlantUML tool with the given set of arguments to generate various diagrams'
 author: '@ccojocar'
 
 inputs:
   args:
-    description: 'Arguments for plantUML tool'
+    description: 'Arguments for PlantUML tool'
     required: true
     default: '-h'
 
