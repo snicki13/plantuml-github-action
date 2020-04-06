@@ -12,7 +12,7 @@ pipeline {
         disableConcurrentBuilds()
     }
     environment {
-        DOCKER_BASE_IMAGE = 'cloudbees/plantuml-github-actions'
+        DOCKER_BASE_IMAGE = 'cloudbees/plantuml-github-action'
         DOCKER_REPO_NAME = 'docker.io'
         SLACK_CHANNELS = "#notify-product-security"
     }
