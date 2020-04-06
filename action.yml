@@ -1,0 +1,13 @@
+name: "PlantUML"
+description: "Run PlantUML tool with the given set of arguments"
+author: "@ccojocar"
+
+inputs:
+    args:
+        description: "Arguments for plantUML tool"
+        required: true
+        default: "-h"
+
+runs:
+    using: "docker"
+    image: "docker://cloudbees/plantuml-github-action"
