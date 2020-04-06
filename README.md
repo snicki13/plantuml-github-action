@@ -13,7 +13,8 @@ This action runs the [PlantUML](https://plantuml.com/) tool to generate images f
 
 ## Example usage
 
-This is an workflow example which generates the svg and png images from PlantUML digrams.
+This is an an example of a workflow which generates the svg and png images from PlantUML text digram. It will
+trigger every time there is a change in a `puml` file.
 
 `.github/worksflows/main.yml`:
 
@@ -21,11 +22,15 @@ This is an workflow example which generates the svg and png images from PlantUML
 name: Generate PlantUML Diagrams
 on:
   push:
+    path:
+      - '**.puml'
     branches:
       - master
 jobs:
   ci:
     runs-on: ubuntu-latest
+    env:
+        UML_FILES: "diagrams/*.puml"
     steps:
       - name: Checkout Source 
         uses: actions/checkout@v2
@@ -34,18 +39,19 @@ jobs:
       - name: Generate SVG Diagrams
         uses: cloudbees/plantuml-github-action@master
         with:
-            args: -v -tsvg *.puml
+            args: -v -tsvg $UML_FILES
       - name: Generate PNG Diagrams
         uses: cloudbees/plantuml-github-action@master
         with:
-            args: -v -tpng *.puml
+            args: -v -tpng $UML_FILES
       - name: Push Local Changes
-        env: 
-          COMMIT_USERNAME: "My user name"
-          COMMIT_EMAIL: "my-email@cloudbees.com"
-          COMMIT_MESSAGE: "Generate SVG and PNG images for PlantUML diagrams" 
-        run: |
-          scripts/push-local-changes.sh
+        uses:  stefanzweifel/git-auto-commit-action@v4.1.2 
+        with: 
+          commit_user_name: "my user name"
+          commit_user_email: "me@email.org"
+          commit_author: "My User <me@email.org>"
+          commit_message: "Generate SVG and PNG images for PlantUML diagrams" 
+          branch: ${{ github.head_ref }}
 ```
 
-The script which commits the generated images into master can be found in [scripts](scripts/push-local-changes.sh) folder.
+The last setp will commit the generated images back into the master branch.
