@@ -24,6 +24,11 @@ pipeline {
         }
     }
     stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
         /*
         stage('Check if build is needed') {
             steps {
@@ -138,6 +143,7 @@ pipeline {
             }
         }
 
+        /*
         failure {
             script {
                 def message = "${currentBuild.result}: ${env.DOCKER_REPO_NAME}/${env.DOCKER_BASE_IMAGE} (`${env.JOB_NAME}` #${env.BUILD_NUMBER}:\n${env.BUILD_URL})"
@@ -146,7 +152,7 @@ pipeline {
                     message: "${message}"
                 )
             }
-        }
+        }*/
     }
 }
 
