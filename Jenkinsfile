@@ -3,7 +3,7 @@ import groovy.transform.Field
 @Field
 def do_build = "false"
 
-@Library('prod-sec-libs') _1
+// @Library('prod-sec-libs') _1
 
 pipeline {
     options {
@@ -130,7 +130,7 @@ pipeline {
     post {
         success { 
             script { 
-                def message = "${currentBuild.result}: Whitesource-agent version ${env.DOCKER_REPO_NAME}/${env.DOCKER_BASE_IMAGE}:${env.DOCKER_IMG_VERSION_PATCH} built and pushed. (`${env.JOB_NAME}` #${env.BUILD_NUMBER}:\n${env.BUILD_URL})"
+                def message = "${currentBuild.result}: ${env.DOCKER_REPO_NAME}/${env.DOCKER_BASE_IMAGE} built and pushed. (`${env.JOB_NAME}` #${env.BUILD_NUMBER}:\n${env.BUILD_URL})"
                 slackSend (
                     channel: "${env.SLACK_CHANNELS}",
                     message: "${message}"
@@ -140,7 +140,7 @@ pipeline {
 
         failure {
             script {
-                def message = "${currentBuild.result}: Whitesource-agent version ${env.DOCKER_REPO_NAME}/${env.DOCKER_BASE_IMAGE}:${env.DOCKER_IMG_VERSION_PATCH} failed to build. (`${env.JOB_NAME}` #${env.BUILD_NUMBER}:\n${env.BUILD_URL})"
+                def message = "${currentBuild.result}: ${env.DOCKER_REPO_NAME}/${env.DOCKER_BASE_IMAGE} (`${env.JOB_NAME}` #${env.BUILD_NUMBER}:\n${env.BUILD_URL})"
                 slackSend (
                     channel: "${env.SLACK_CHANNELS}",
                     message: "${message}"
