@@ -22,7 +22,7 @@ trigger every time there is a change in a `puml` file.
 name: Generate PlantUML Diagrams
 on:
   push:
-    path:
+    paths:
       - '**.puml'
     branches:
       - master
