@@ -1,13 +1,15 @@
-name: "PlantUML"
-description: "Run PlantUML tool with the given set of arguments"
-author: "@ccojocar"
+name: 'PlantUML'
+description: 'Run PlantUML tool with the given set of arguments'
+author: '@ccojocar'
 
 inputs:
-    args:
-        description: "Arguments for plantUML tool"
-        required: true
-        default: "-h"
+  args:
+    description: 'Arguments for plantUML tool'
+    required: true
+    default: '-h'
 
 runs:
-    using: "docker"
-    image: "docker://cloudbees/plantuml-github-action"
+    using: 'docker'
+    image: 'docker://cloudbees/plantuml-github-action'
+    args:
+      - ${{ inputs.args }}
