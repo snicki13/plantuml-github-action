@@ -13,3 +13,7 @@ runs:
     image: 'docker://cloudbees/plantuml-github-action'
     args:
       - ${{ inputs.args }}
+
+branding:
+  icon: 'underline'
+  color: 'blue'
