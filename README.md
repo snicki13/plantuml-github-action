@@ -33,13 +33,18 @@ jobs:
         UML_FILES: "diagrams/*.puml"
     steps:
       - name: Checkout Source 
-        uses: actions/checkout@v2
-      - name: Checkout Master Branch
-        run: git checkout master
+        uses: actions/checkout@v1
       - name: Generate SVG Diagrams
         uses: cloudbees/plantuml-github-action@master
         with:
             args: -v -tsvg $UML_FILES
+      - name: Get changed UML files
+        id: getfile
+        run: |
+          echo "::set-output name=files::$(git diff-tree -r --no-commit-id --name-only ${{ github.sha }} | grep ${{ env.UML_FILES }} | xargs)"
+      - name: UML files considered echo output
+        run: |
+          echo ${{ steps.getfile.outputs.files }}
       - name: Generate PNG Diagrams
         uses: cloudbees/plantuml-github-action@master
         with:
