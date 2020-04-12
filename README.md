@@ -30,7 +30,7 @@ jobs:
   ci:
     runs-on: ubuntu-latest
     env:
-        UML_FILES: "diagrams/*.puml"
+        UML_FILES: ".puml"
     steps:
       - name: Checkout Source 
         uses: actions/checkout@v1
