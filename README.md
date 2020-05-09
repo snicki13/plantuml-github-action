@@ -59,4 +59,4 @@ jobs:
           branch: ${{ github.head_ref }}
 ```
 
-The last setp will commit the generated images back into the master branch.
+The last step will commit the generated images back into the master branch.
