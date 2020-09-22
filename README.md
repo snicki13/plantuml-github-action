@@ -33,7 +33,9 @@ jobs:
         UML_FILES: ".puml"
     steps:
       - name: Checkout Source 
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: Get changed UML files
         id: getfile
         run: |
