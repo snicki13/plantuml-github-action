@@ -6,7 +6,7 @@ FROM ubuntu:groovy
 RUN mkdir -p /usr/share/man/man1
 
 RUN apt-get -qy update && \
-    DEBIAN_FRONTEND=noninteractive apt-get -yq install plantuml graphviz git && \
+    DEBIAN_FRONTEND=noninteractive apt-get -yq install plantuml graphviz git fonts-ipafont fonts-ipaexfont && \
     rm -rf /var/lib/apt/lists/*
 
 COPY entrypoint.sh /entrypoint.sh
