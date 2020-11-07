@@ -11,8 +11,4 @@ RUN apt-get -qy update && \
 
 COPY entrypoint.sh /entrypoint.sh
 
-ENV HOME_DIR /app
-
-WORKDIR $HOME_DIR
-
 ENTRYPOINT ["/entrypoint.sh"]
